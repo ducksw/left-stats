@@ -72,8 +72,12 @@ app.use((req, res, next) => {
 passport.use(
 	new SteamStrategy(
 		{
+			/*
 			returnURL: "http://localhost:3000/auth/steam/return",
 			realm: "http://localhost:3000/",
+			*/
+			returnURL: "https://left-stats.onrender.com/auth/steam/return",
+			realm: "https://left-stats.onrender.com/",
 			apiKey: process.env.API_STEAM,
 		},
 		async (identifier, profile, done) => {
