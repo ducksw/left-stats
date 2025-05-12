@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+body {
+  padding: 10px;
+  background-color: #121212;
+  /* font-family: 'Roboto Mono'; */
+  font-family: 'Source Code Pro';
+  max-width: 100%;
+  width: 1300px;
+  margin: auto;
+  /* font-size: 14pt; */
+}
+
+.text-champions {
+  text-shadow: 0px 0px 10px brown;
+}
+
+.text-title {
+  text-shadow: 3px 2px 1px brown;
+}
+
+nav div a:hover {
+  color: darkred !important;
+}
+
+.sec {
+  /* max-width: 100%; */
+  width: 100%;
+}
+
+.input::placeholder {
+  color: grey;
+}
+
+.text {
+  display: flex;
+  gap: 15px;
+  font-size: large;
+}
+
+.vd:hover {
+  box-shadow: 0px 0px 10px brown;
+}
+
+.ranking {
+  background-color: darkred;
+}
+
+.sec2 {
+  overflow: auto;
+}
+
+.image-ranking {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.inp::placeholder {
+  color: white;
+}
+
+@media (max-width: 800px) {
+  header.d-flex {
+    display: none !important;
+  }
+  .header.d-none {
+    display: flex !important;
+  }
+}

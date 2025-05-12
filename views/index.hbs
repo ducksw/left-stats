@@ -1,0 +1,133 @@
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.12.1/font/bootstrap-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./css/style.css">
+  <title>L4D2 Hub</title>
+</head>
+<body>
+{{>nav}}
+
+<section class="d-flex bg bg-black p-2 border border-dark rounded sec">
+  {{#if displayName}}
+    <div class="d-flex justify-content-between w-100 ">
+      <div class="d-flex align-items-center gap-3 w-100 ">
+        <img src="{{avatar}}" class="border border-dark">
+        <div class="d-flex flex-column gap-1">
+          <div class="w-100">
+            <span class="text-light">{{displayName}}</span>
+            <span class="text-danger bg bg-dark p-1 rounded">{{elo}}</span>
+          </div>
+          <div class="w-100">
+            <a href="{{profileurl}}" target="_blank">Steam</a> |
+            <a href="/logout">Logout</a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <img src="./image/rank-bronze.svg" style="max-width: 100%; width: 80px;">
+      </div>
+    </div>
+  {{else}}
+    <div class="d-flex flex-column w-100 text-center">
+      <p class="text-light">Inicia sesión con tu cuenta de Steam para comenzar a jugar. Haz clic en el botón de abajo para autorizar el acceso.</p>
+      <i class="bi bi-arrow-down text-danger"></i>
+      <div class="d-flex justify-content-center mt-2">
+        <a href="/auth/steam/return"><img src="./image/steam.png"></a>
+      </div>
+    </div>
+  {{/if}}
+</section>
+
+<section class="d-flex flex-column gap-2 justify-content-between mt-3 text-light bg bg-black border border-dark rounded p-2 sec">
+  <b class="bg-gradient bg-dark d-flex justify-content-center w-100 rounded p-2 mx-auto">Anuncio</b>
+  <div class="d-flex gap-3 justify-content-center mt-2">
+    <img src="./image/champ.jpg" class="w-25 rounded" style="box-shadow: 0px 0px 10px orangered;">
+    <div class="mt-2">
+      <h4 class="text-danger"><b>🏆 Premier League Bulls</b></h4>
+      <span class="text">Copa de temporada: <span class="text-secondary">Próximamente.</span></span>
+      <span class="text">Fecha de Inicio: <span class="text-secondary">Próximamente.</span></span>
+      <span class="text">Formato: <span class="text-secondary">Próximamente.</span></span>
+      <span class="text">Mejor Jugador: <span class="text-secondary">Próximamente.</span></span>
+      <span class="text">Copa: <span class="text-secondary">Próximamente.</span></span>
+      <br/>
+      <a href="">Ver Premier League Bulls</a>
+    </div>
+  </div>
+</section>
+
+<section class="d-flex gap-2 justify-content-between mt-3 text-light bg bg-black border border-dark rounded p-2 sec sec2">
+  <div class="border border-dark w-50 p-2 rounded">
+    <b class="d-flex justify-content-center bg bg-danger rounded p-1">🌟 Global Players</b>
+    <div class="d-flex flex-column mt-3">
+      {{#each steam}}
+        <div class="d-flex justify-content-between p-1">
+          <div>
+            <span class="text-warning">#{{increment @index}}</span>
+            <span>{{this.displayName}}</span>
+          </div>
+          <span class="text-secondary">{{this.rank}}</span>
+        </div>
+      {{/each}}
+    </div>
+    <a href="/stats" class="d-flex w-50 justify-content-center mx-auto btn btn-dark focus-ring focus-ring-secondary mt-3">Ver más</a>
+  </div>
+
+  <div class="border border-dark w-50 p-2 rounded">
+    <b class="d-flex justify-content-center bg bg-warning rounded p-1 text-dark">🏅 Elo Leaderboard </b>
+    <div class="d-flex flex-column mt-3">
+      {{#each eloRanking}}
+        <div class="d-flex justify-content-between p-1">
+          <div>
+            <span class="text-warning">#{{increment @index}}</span>
+            <span>{{this.displayName}}</span>
+          </div>
+          <b class="text-danger">{{this.elo}}</b>
+        </div>
+      {{/each}}
+    </div>
+    <a href="/stats" class="d-flex w-50 justify-content-center mx-auto btn btn-dark focus-ring focus-ring-secondary mt-3">Ver más</a>
+  </div>
+
+  <div class="border border-dark w-50 p-2 rounded">
+    <b class="d-flex justify-content-center rounded p-1 text-light" style="background-color: purple;">🏆 Win Leaderboard </b>
+    <div class="d-flex flex-column mt-3">
+      {{#each win}}
+        <div class="d-flex justify-content-between p-1">
+          <div>
+            <span class="text-warning">#{{increment @index}}</span>
+            <span>{{this.displayName}}</span>
+          </div>
+          <b class="text-danger">{{this.win}} ⭐</b>
+        </div>
+      {{/each}}
+    </div>
+    <a href="/stats" class="d-flex w-50 justify-content-center mx-auto btn btn-dark focus-ring focus-ring-secondary mt-3">Ver más</a>
+  </div>
+</section>
+
+<section class="bg bg-black border border-dark mt-3 p-2 rounded">
+  <b class="bg-gradient bg-dark d-flex justify-content-center w-100 rounded p-2 mx-auto text-light">Clips Recientes</b>
+  <div class="d-flex flex-wrap gap-2 p-2 mt-3">
+    {{#if video}}
+      {{#each video}}
+        <a href="{{this.link}}" class="d-flex text-light rounded flex-column text-decoration-none p-2 mx-auto vd" style="max-width: 100%; width: 400px; background-color: rgb(26, 26, 26);">
+          <img src="https://img.youtube.com/vi/{{this.thumbnail_url}}/maxresdefault.jpg" class="border border-secondary">
+          <span>{{this.title}}</span>
+        </a>
+      {{/each}}
+      {{else}}
+      <p class="text-light">No hay clips recientes</p>
+    {{/if}}
+  </div>
+</section>
+
+
+</body>
+</html>
